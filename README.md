@@ -1,4 +1,4 @@
-## About Foundation
+## About
 
 Example project showing use of multiple MySQL databases in laravel app with phpunit.
 
