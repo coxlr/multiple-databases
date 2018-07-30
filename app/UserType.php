@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Traits\MySQL2ConnectionTrait;
+
 use Illuminate\Database\Eloquent\Model;
 
 class UserType extends Model
 {
-    protected $connection = 'mysql2';
+	use MySQL2ConnectionTrait;
 }

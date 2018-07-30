@@ -8,11 +8,16 @@ Run the following commands
 
 ```git clone https://github.com/coxy121/multiple-databases.git```
 
-Copy .env.example file as .env and update database connection details
+```cd multiple-databases && composer install```
+
+```mv .env.example .env```
+
+```php artisan key:generate```
+
+Update database connection details
 
 Create 2 MySQL databases on the same connection called testing_a and testing_b
 
-Run ```cd multiple-databases && composer install```
 
 Run ```php artisan migrate --seed```
 
@@ -26,7 +31,8 @@ You will see 6 collections dumped out to the page.
 
 run ```phpunit```
 
-You will see one collections and 5 empty collections dumped to the terminal
+You will see 6 dumped to the terminal
 
+In routes/web.php there are 6 different queries being run to fetch the data that are all being dumped out, to show examples of data being successfully retrieved from databases joined over different connections.
 
-In routes/web.php there are 5 different queries being run to fetch the data that are all being dumped out, to show example of where the issue is occuring.
+**Note:** If you run ```phpunit``` you will need to rerun ```php artisan migrate --seed``` to view the browser version again.
