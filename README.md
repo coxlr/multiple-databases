@@ -36,3 +36,21 @@ You will see 6 dumped to the terminal
 In routes/web.php there are 6 different queries being run to fetch the data that are all being dumped out, to show examples of data being successfully retrieved from databases joined over different connections.
 
 **Note:** If you run ```phpunit``` you will need to rerun ```php artisan migrate --seed``` to view the browser version again.
+
+## Resolution
+
+I am not sure if this is the expected behavior, but I was able to resolve this by ensuring that during phpunit testing the connection used was always the default connection as specified in the phpunit.xml file using a trait on the model.
+
+```
+trait MySQL2ConnectionTrait
+{
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->connection = app()->environment(['testing']) ? 'mysql' : 'mysql2';
+
+        $this->table = 'testing_b.'.$this->getTable();
+    }
+}
+```
